@@ -1,7 +1,9 @@
 name: CI CD
 
 on:
-  push: branches:[ main ]
+  push:
+    branches:
+      - main
 
 jobs:
   build:
@@ -22,10 +24,10 @@ jobs:
         bun-version: "latest"
 
     - name: Install dependencies
-      uses: bun install
+      run: bun install
 
     - name: Run tests
-      uses: bun test
+      run: bun test
 
-    - name: Run application
-      uses: bun start
+    # - name: Run application
+    #   run: bun start
