@@ -1,0 +1,32 @@
+name: CI CD
+
+on:
+  push:
+   branch:[main]
+
+jobs:
+  build:
+    run-on: ubuntu-latest
+  
+steps:
+  - name: Checkout code
+    uses: actions/checkout@v3
+  
+  - name: Setup Node.js
+    uses: actions/setup-node@v3
+    with:
+      node-version: '18'
+
+  - name: Install Bun
+    uses: oven-sh/bun@v1
+    with:
+      bun-version: 'latest'
+
+  - name: Install dependencies
+    uses: bun install
+
+  - name: Run tests
+    uses: bun test
+
+  - name: Run application
+    uses: bun start
